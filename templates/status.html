@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Status - Your Name{% endblock %}
+
+{% block content %}
+<h1>Status</h1>
+<p class="status-description">Short thoughts and quick updates.</p>
+
+{% for status in status_posts %}
+<article class="status-post">
+    <time class="status-date">{{ status.date.strftime('%B %d, %Y at %I:%M %p') }}</time>
+    <div class="status-content">{{ status.content|safe }}</div>
+</article>
+{% endfor %}
+{% endblock %}

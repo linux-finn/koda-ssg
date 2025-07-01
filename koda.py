@@ -1,0 +1,232 @@
+#!/usr/bin/env python3
+"""
+Koda Static Site Generator
+A minimal Python-based static site generator inspired by clean, typography-focused design.
+"""
+
+import os
+import shutil
+import markdown
+import yaml
+from datetime import datetime
+from pathlib import Path
+from jinja2 import Environment, FileSystemLoader
+import argparse
+from xml.etree.ElementTree import Element, SubElement, tostring
+from xml.dom import minidom
+
+class KodaGenerator:
+    def __init__(self, source_dir="content", output_dir="site", templates_dir="templates"):
+        self.source_dir = Path(source_dir)
+        self.output_dir = Path(output_dir)
+        self.templates_dir = Path(templates_dir)
+        self.posts = []
+        self.pages = []
+        self.photos = []
+        self.status_posts = []
+        
+        # Setup Jinja2
+        self.env = Environment(loader=FileSystemLoader(self.templates_dir))
+        
+        # Setup Markdown
+        self.md = markdown.Markdown(extensions=['meta', 'codehilite', 'fenced_code'])
+    
+    def clean_output(self):
+        """Remove existing output directory"""
+        if self.output_dir.exists():
+            shutil.rmtree(self.output_dir)
+        self.output_dir.mkdir(parents=True, exist_ok=True)
+    
+    def copy_static_files(self):
+        """Copy static files (CSS, images, etc.)"""
+        static_source = Path("static")
+        static_dest = self.output_dir / "static"
+        
+        if static_source.exists():
+            shutil.copytree(static_source, static_dest)
+    
+    def parse_content_file(self, file_path):
+        """Parse a markdown file with YAML frontmatter"""
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # Split frontmatter and content
+        if content.startswith('---'):
+            try:
+                frontmatter_end = content.index('---', 3)
+                frontmatter = yaml.safe_load(content[3:frontmatter_end])
+                markdown_content = content[frontmatter_end + 3:].strip()
+            except ValueError:
+                frontmatter = {}
+                markdown_content = content
+        else:
+            frontmatter = {}
+            markdown_content = content
+        
+        # Convert markdown to HTML
+        html_content = self.md.convert(markdown_content)
+        
+        return {
+            'frontmatter': frontmatter,
+            'content': html_content,
+            'raw_content': markdown_content
+        }
+    
+    def load_content(self):
+        """Load all content files"""
+        print("Loading content...")
+        
+        # Load blog posts
+        posts_dir = self.source_dir / "posts"
+        if posts_dir.exists():
+            for post_file in posts_dir.glob("*.md"):
+                parsed = self.parse_content_file(post_file)
+                post_data = {
+                    'slug': post_file.stem,
+                    'filename': post_file.name,
+                    'title': parsed['frontmatter'].get('title', 'Untitled'),
+                    'date': parsed['frontmatter'].get('date', datetime.now()),
+                    'content': parsed['content'],
+                    'excerpt': parsed['frontmatter'].get('excerpt', ''),
+                    'tags': parsed['frontmatter'].get('tags', [])
+                }
+                self.posts.append(post_data)
+        
+        # Sort posts by date (newest first)
+        self.posts.sort(key=lambda x: x['date'], reverse=True)
+        
+        # Load pages
+        pages_dir = self.source_dir / "pages"
+        if pages_dir.exists():
+            for page_file in pages_dir.glob("*.md"):
+                parsed = self.parse_content_file(page_file)
+                page_data = {
+                    'slug': page_file.stem,
+                    'title': parsed['frontmatter'].get('title', 'Untitled'),
+                    'content': parsed['content'],
+                    'order': parsed['frontmatter'].get('order', 100)
+                }
+                self.pages.append(page_data)
+        
+        # Load status posts
+        status_dir = self.source_dir / "status"
+        if status_dir.exists():
+            for status_file in status_dir.glob("*.md"):
+                parsed = self.parse_content_file(status_file)
+                status_data = {
+                    'slug': status_file.stem,
+                    'date': parsed['frontmatter'].get('date', datetime.now()),
+                    'content': parsed['content']
+                }
+                self.status_posts.append(status_data)
+        
+        # Sort status posts by date (newest first)
+        self.status_posts.sort(key=lambda x: x['date'], reverse=True)
+        
+        # Load photos
+        photos_dir = self.source_dir / "photos"
+        if photos_dir.exists():
+            for photo_file in photos_dir.glob("*.md"):
+                parsed = self.parse_content_file(photo_file)
+                photo_data = {
+                    'slug': photo_file.stem,
+                    'title': parsed['frontmatter'].get('title', ''),
+                    'date': parsed['frontmatter'].get('date', datetime.now()),
+                    'image': parsed['frontmatter'].get('image', ''),
+                    'content': parsed['content']
+                }
+                self.photos.append(photo_data)
+        
+        # Sort photos by date (newest first)
+        self.photos.sort(key=lambda x: x['date'], reverse=True)
+    
+    def generate_rss(self):
+        """Generate RSS feed"""
+        rss = Element('rss', version='2.0')
+        channel = SubElement(rss, 'channel')
+        
+        SubElement(channel, 'title').text = "Your Blog"
+        SubElement(channel, 'link').text = "https://yourdomain.com"
+        SubElement(channel, 'description').text = "Personal blog and thoughts"
+        
+        for post in self.posts[:10]:  # Latest 10 posts
+            item = SubElement(channel, 'item')
+            SubElement(item, 'title').text = post['title']
+            SubElement(item, 'link').text = f"https://yourdomain.com/posts/{post['slug']}.html"
+            SubElement(item, 'description').text = post['excerpt']
+            SubElement(item, 'pubDate').text = post['date'].strftime('%a, %d %b %Y %H:%M:%S GMT')
+        
+        # Pretty print XML
+        rough_string = tostring(rss, 'utf-8')
+        reparsed = minidom.parseString(rough_string)
+        
+        with open(self.output_dir / 'rss.xml', 'w', encoding='utf-8') as f:
+            f.write(reparsed.toprettyxml(indent="  "))
+    
+    def generate_pages(self):
+        """Generate all pages"""
+        print("Generating pages...")
+        
+        # Homepage
+        template = self.env.get_template('index.html')
+        with open(self.output_dir / 'index.html', 'w', encoding='utf-8') as f:
+            f.write(template.render(
+                recent_posts=self.posts[:5],
+                pages=sorted(self.pages, key=lambda x: x['order'])
+            ))
+        
+        # Blog index
+        template = self.env.get_template('blog.html')
+        with open(self.output_dir / 'blog.html', 'w', encoding='utf-8') as f:
+            f.write(template.render(posts=self.posts))
+        
+        # Individual blog posts
+        posts_dir = self.output_dir / "posts"
+        posts_dir.mkdir(exist_ok=True)
+        template = self.env.get_template('post.html')
+        
+        for post in self.posts:
+            with open(posts_dir / f"{post['slug']}.html", 'w', encoding='utf-8') as f:
+                f.write(template.render(post=post))
+        
+        # Static pages
+        template = self.env.get_template('page.html')
+        for page in self.pages:
+            with open(self.output_dir / f"{page['slug']}.html", 'w', encoding='utf-8') as f:
+                f.write(template.render(page=page))
+        
+        # Photos page
+        if self.photos:
+            template = self.env.get_template('photos.html')
+            with open(self.output_dir / 'photos.html', 'w', encoding='utf-8') as f:
+                f.write(template.render(photos=self.photos))
+        
+        # Status page
+        if self.status_posts:
+            template = self.env.get_template('status.html')
+            with open(self.output_dir / 'status.html', 'w', encoding='utf-8') as f:
+                f.write(template.render(status_posts=self.status_posts))
+    
+    def build(self):
+        """Build the entire site"""
+        print("Building Koda site...")
+        self.clean_output()
+        self.copy_static_files()
+        self.load_content()
+        self.generate_pages()
+        self.generate_rss()
+        print(f"Site built successfully in {self.output_dir}")
+
+def main():
+    parser = argparse.ArgumentParser(description='Koda Static Site Generator')
+    parser.add_argument('--source', default='content', help='Source directory')
+    parser.add_argument('--output', default='site', help='Output directory')
+    parser.add_argument('--templates', default='templates', help='Templates directory')
+    
+    args = parser.parse_args()
+    
+    generator = KodaGenerator(args.source, args.output, args.templates)
+    generator.build()
+
+if __name__ == "__main__":
+    main()

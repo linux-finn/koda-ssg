@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Your Name{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml">
+</head>
+<body>
+    <div class="container">
+        <header class="site-header">
+            <nav class="site-nav">
+                <a href="/" class="home-link">Your Name</a>
+                <div class="nav-links">
+                    <a href="/blog.html">Blog</a>
+                    <a href="/photos.html">Photos</a>
+                    <a href="/projects.html">Projects</a>
+                    <a href="/about.html">About</a>
+                    <a href="/status.html">Status</a>
+                    <a href="/contact.html">Contact</a>
+                </div>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer class="site-footer">
+            <p>&copy; 2025 Your Name. <a href="/rss.xml">RSS</a></p>
+        </footer>
+    </div>
+</body>
+</html>
