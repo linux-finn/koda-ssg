@@ -1,4 +1,3 @@
-```markdown
 # Koda SSG 🚀
 
 > A minimal Python-based static site generator for clean, typography-focused websites.
@@ -97,6 +96,10 @@ git add .
 git commit -m "Add new content"
 git push origin main
 ```
+
+## 🤝 Contributing
+
+Contributions welcome! Please read our [contributing guidelines](CONTRIBUTING.md) first.
 
 ## 📄 License
 
