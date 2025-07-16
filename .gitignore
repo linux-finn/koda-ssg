@@ -16,12 +16,9 @@ parts/
 sdist/
 var/
 wheels/
-pip-wheel-metadata/
-share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-MANIFEST
 
 # Virtual environments
 koda-env/
@@ -32,13 +29,25 @@ ENV/
 # Generated site
 site/
 
-# IDE
+# Editor files
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# OS
+# OS files
 .DS_Store
 Thumbs.db
+
+# Backup files
+*.bak
+*.backup
+*-backup-*
+
+# Logs
+*.log
+
+# Temporary files
+tmp/
+temp/

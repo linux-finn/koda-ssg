@@ -1,217 +1,113 @@
-# Koda Static Site Generator
+```markdown
+# Koda SSG 🚀
 
-A minimal Python-based static site generator designed for clean, typography-focused personal websites and blogs. Inspired by the ultra-minimal aesthetic of sites like jarunmb.com.
+> A minimal Python-based static site generator for clean, typography-focused websites.
 
-![Koda Demo](https://img.shields.io/badge/demo-live-brightgreen)
-![Python](https://img.shields.io/badge/python-3.7+-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
+
+Koda SSG is designed for writers and developers who want beautiful, fast-loading websites without the complexity of modern web frameworks. Built for the modern web with classic sensibilities.
 
 ## ✨ Features
 
 - **Ultra-minimal design** with abundant white space and clean typography
-- **Fast-loading pages** with minimal CSS and no JavaScript bloat
-- **Markdown-powered** content management with YAML frontmatter
-- **Multiple content types**: Blog posts, static pages, photo galleries, micro-posts
-- **Automatic RSS feed** generation
-- **Mobile-responsive** design that works perfectly on all devices
-- **Git-friendly workflow** with simple file-based content
-- **Easy deployment** to any static hosting service
+- **Lightning fast** - No JavaScript bloat, minimal CSS
+- **Multiple content types** - Blog posts, photos, status updates, ephemera
+- **Markdown-powered** with YAML frontmatter
+- **RSS feeds** automatically generated
+- **Mobile-responsive** design that works everywhere
+- **Git-friendly** workflow with file-based content
+- **Deploy anywhere** - Works with any static hosting service
 
 ## 🚀 Quick Start
 
-### Prerequisites
-
-- Python 3.7 or higher
-- Linux/macOS (Windows should work but untested)
-
-### Installation
-
 ```bash
-# Clone the repository
+# Clone and setup
 git clone https://github.com/linux-finn/koda-ssg.git
 cd koda-ssg
-
-# Create virtual environment
 python3 -m venv koda-env
 source koda-env/bin/activate
-
-# Install dependencies
 pip install -r requirements.txt
 
-# Build the sample site
+# Create your first post
+nano content/posts/hello-world.md
+
+# Build and preview
 python3 koda.py
+cd site && python3 -m http.server 8000
+```
 
-# Preview locally
-cd site
-python3 -m http.server 8000
-# Visit http://localhost:8000
+Visit `http://localhost:8000` to see your site!
 
-📁 Project Structure
+## 📚 Documentation
 
-koda-ssg/
-├── koda.py              # Main generator script
-├── requirements.txt     # Python dependencies
-├── templates/           # Jinja2 HTML templates
-│   ├── base.html       # Base template
-│   ├── index.html      # Homepage
-│   ├── blog.html       # Blog index
-│   ├── post.html       # Individual blog post
-│   ├── page.html       # Static pages
-│   ├── photos.html     # Photo gallery
-│   └── status.html     # Micro-posts
-├── static/              # Static assets
-│   └── css/
-│       └── style.css   # Minimal CSS stylesheet
-├── content/             # Your content (Markdown files)
-│   ├── posts/          # Blog posts
-│   ├── pages/          # Static pages
-│   ├── photos/         # Photo posts
-│   └── status/         # Micro-posts/status updates
-└── site/               # Generated website (created on build)
+- **[Maintenance Guide](docs/MAINTENANCE_GUIDE.md)** - Complete operational guide
+- **[Changelog](docs/CHANGELOG.md)** - Version history and updates
 
-✍️ Writing Content
+## 🎯 Perfect For
 
-Blog Posts
-Create files in content/posts/ with YAML frontmatter:
+- Personal blogs and portfolios
+- Photography sites
+- Minimal business websites
+- Technical documentation
+- Anyone who values speed and simplicity
 
----
-title: My Blog Post
-date: 2025-07-01
-excerpt: A brief description of the post
-tags: [python, web, minimal]
----
+## 🛠️ Built With
 
-# My Blog Post
+- **Python 3.7+** - Core language
+- **Jinja2** - Templating engine
+- **Markdown** - Content formatting
+- **PyYAML** - Frontmatter parsing
 
-Your content goes here in **Markdown** format.
+## 📦 Content Types
 
-## Subheading
+| Type | Purpose | Example |
+|------|---------|---------|
+| **Blog** | Long-form articles | `/content/posts/my-thoughts.md` |
+| **Photos** | Image galleries | `/content/photos/sunset.md` |
+| **Status** | Micro-posts | `/content/status/quick-update.md` |
+| **Pages** | Static content | `/content/pages/about.md` |
+| **Ephemera** | Link sharing | `/content/ephemera/interesting-link.md` |
 
-- Lists work great
-- As do [links](https://example.com)
-- And `code snippets`
+## 🚀 Deployment
 
-Static Pages
-Create files in content/pages/:
+Koda generates static HTML that works anywhere:
 
----
-title: About
-order: 1
----
+- **GitHub Pages** - Free hosting with automatic builds
+- **Netlify** - Drag-and-drop deployment
+- **Vercel** - Git-based deployment
+- **Any static host** - Upload the `site/` folder
 
-# About Me
-
-Tell your story here.
-
-Photo Posts
-Create files in content/photos/:
-
----
-title: Beautiful Sunset
-date: 2025-07-01
-image: /static/images/sunset.jpg
----
-
-Captured this amazing sunset from my balcony.
-
-Status Updates (Micro-posts)
-Create files in content/status/:
-
----
-date: 2025-07-01T14:30:00
----
-
-Just discovered this amazing new tool that solved my problem perfectly!
-
-🎨 Customization
-Styling
-Edit static/css/style.css to customize:
-
-Colors and typography
-Layout and spacing
-Responsive breakpoints
-
-Templates
-Modify templates in templates/ to change:
-
-Page structure
-Navigation layout
-Content presentation
-
-Site Configuration
-Edit koda.py to update:
-
-Site title and description
-RSS feed settings
-Build behavior
-
-🚀 Deployment
-Koda generates static HTML files that can be deployed anywhere:
-GitHub Pages
-
-# Build your site
-python3 koda.py
-
-# Push the site/ directory to your gh-pages branch
-# Or use GitHub Actions (see docs/deployment.md)
-
-Netlify
-
-Build your site: python3 koda.py
-Drag and drop the site/ folder to Netlify
-Or connect your GitHub repo for automatic builds
-
-Vercel, AWS S3, or any static host
-Upload the contents of the site/ directory to your hosting service.
-📚 Documentation
-
-Installation Guide
-Content Creation
-Customization
-Deployment
-Troubleshooting
-
-🤝 Contributing
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
-📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
-🙏 Acknowledgments
-
-Inspired by the minimal design of jarunmb.com
-Built with Jinja2, Markdown, and PyYAML
-
-📞 Support
-
-🐛 Report bugs
-💡 Request features
-📖 Read the docs
-
-Koda SSG - Simple, fast, and beautiful static sites.
-
-### **LICENSE File**
+## 🔧 Daily Workflow
 
 ```bash
-nano LICENSE
+# Start your session
+cd /DATA/AppData/koda-ssg
+source koda-env/bin/activate
 
-MIT License
+# Create content
+nano content/posts/new-post.md
 
-Copyright (c) 2025 Stephen
+# Build and deploy
+python koda.py
+./deploy.sh
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+# Commit to Git
+git add .
+git commit -m "Add new content"
+git push origin main
+```
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+## 📄 License
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+MIT License - see [LICENSE](LICENSE) for details.
 
+## 🙏 Acknowledgments
+
+- Inspired by minimal design principles
+- Built for the modern web with classic sensibilities
+
+---
+
+**[Stephen Finnegan](https://stephenfinnegan.com)** - Creator and maintainer
+```
