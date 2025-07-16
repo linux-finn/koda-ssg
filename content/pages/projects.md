@@ -1,20 +1,22 @@
 ---
 title: Projects
-order: 2
+order: 3
 ---
 
-# Projects
-
-Here are some things I've been working on:
+*Things I've built and am working on.*
 
 ## Koda Static Site Generator
 
-A minimal Python-based static site generator focused on clean typography and fast loading times.
+**Version:** v1.0.0 - Initial Release  
+**Status:** Released  
+**Language:** Python  
+**Type:** Open Source Tool
 
-## [Other Project]
+A minimal Python-based static site generator designed for clean, typography-focused personal websites and blogs. Built from scratch because I got tired of bloated frameworks and over-engineered solutions.
 
-Description of another project you're working on.
+**Key Features:** Ultra-minimal design with clean typography - Fast-loading pages with minimal CSS and no JavaScript bloat - Markdown-powered content with YAML frontmatter - Multiple content types: blog posts, static pages, photo galleries, micro-posts - Automatic RSS feed generation - Mobile-responsive design - Git-friendly workflow
 
----
+**Links:** [GitHub Repository](#) - [Documentation](#)
 
-More projects can be found on my [GitHub](https://github.com/yourusername).
+*This website is powered by Koda SSG v1.0.0!*
+

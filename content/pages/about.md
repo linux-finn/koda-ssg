@@ -3,18 +3,14 @@ title: About
 order: 1
 ---
 
-# About Me
+*Thanks for visiting my little corner of the web.* 
 
-Welcome to my personal corner of the internet. I'm a [your profession] based in [your location], passionate about [your interests].
+There's something special about having your own home online, away from the big platforms, isn't there?
 
-## What I Do
+I'm based in Northern Ireland, where I live surrounded by an ever-growing record collection and a rotating cast of neighborhood cats who've trained me to provide daily meals and belly rubs on demand.
 
-I spend my time working on [your work/projects]. When I'm not coding, you can find me [your hobbies].
+Music runs through everything I do. I've been collecting records since I was a kid and never stopped—there's nothing quite like the thrill of digging through crates in a record shop, hunting for that perfect find. I write about music too, trying to capture some of that magic in words.
 
-## This Site
+A few things that bring me joy: Raspberry Pi projects, Van Neistat's creativity, the perfect feel of Rhodia notebooks, tinkering with Linux, getting lost in Led Zeppelin's catalog, long walks, Jack Kerouac's wandering prose, video games, the ritual of record hunting, discovering new podcasts, and diving deep into history.
 
-This site is built with Koda, a custom static site generator I created. It's designed to be fast, minimal, and focused on content.
-
-## Get in Touch
-
-Feel free to reach out if you'd like to connect or collaborate on something interesting.
+(I update my [/now page](now.html) about once a week with whatever's currently capturing my attention—feel free to check it out!)

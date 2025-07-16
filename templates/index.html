@@ -1,17 +1,16 @@
 {% extends "base.html" %}
-
 {% block content %}
 <div class="welcome-section">
-    <p class="welcome-text">
-        Welcome! I write about technology, life, share my photos, and a bit of everything else in between. 
-        Please take a look around; I hope you find something interesting.
-    </p>
-    
-    <p class="status-link">
-        <a href="/status.html">Status Logbook</a> (micro posts)
-    </p>
+    <div class="welcome-text">
+        Welcome! I write about technology, life, share my photos, and a bit of everything else in between. Please take a look around; I hope you find something interesting.
+    </div>
+    <div class="quick-links">
+    <ul>
+        <li><a href="/status.html">Status Logbook</a> (quick thoughts)</li>
+        <li><a href="/photos.html">Photography Feed</a> (visual stories)</li>
+        <li><a href="/projects.html">Projects</a> (things I build)</li>
+    </ul>
 </div>
-
 {% if recent_posts %}
 <section class="recent-posts">
     <h2>Recent Posts</h2>
@@ -24,7 +23,6 @@
         {% endif %}
     </article>
     {% endfor %}
-    
     <p class="view-all">
         <a href="/blog.html">View all posts →</a>
     </p>

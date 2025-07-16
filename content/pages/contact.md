@@ -1,13 +1,12 @@
 ---
 title: Contact
-order: 3
+order: 2
 ---
 
-# Contact
+*Ways to get in touch*
 
-The best way to reach me is via email: [your-email@example.com](mailto:your-email@example.com)
+**Email**: [stephenfinnegan@tutamail.com](mailto:stephenfinnegan@tutamail.com)
 
-You can also find me on:
-- [Twitter](https://twitter.com/yourusername)
-- [GitHub](https://github.com/yourusername)
-- [LinkedIn](https://linkedin.com/in/yourusername)
+**Substack**: [stephenfinnegan.substack.com](https://stephenfinnegan.substack.com)
+
+My preferred messaging service is **Signal** - [Download Signal](https://signal.org/#signal)

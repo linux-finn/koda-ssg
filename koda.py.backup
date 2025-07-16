@@ -86,7 +86,7 @@ class KodaGenerator:
                     'slug': post_file.stem,
                     'filename': post_file.name,
                     'title': parsed['frontmatter'].get('title', 'Untitled'),
-                    'date': parsed['frontmatter'].get('date', datetime.now().date()),
+                    'date': parsed['frontmatter'].get('date', datetime.now()),
                     'content': parsed['content'],
                     'excerpt': parsed['frontmatter'].get('excerpt', ''),
                     'tags': parsed['frontmatter'].get('tags', [])
