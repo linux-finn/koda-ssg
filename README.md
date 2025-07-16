@@ -40,7 +40,8 @@ Visit `http://localhost:8000` to see your site!
 
 ## 📚 Documentation
 
-- **[Maintenance Guide](docs/MAINTENANCE_GUIDE.md)** - Complete operational guide
+- **[User Guide](docs/USER_GUIDE.md)** - Complete guide for using Koda SSG
+- **[Maintenance Guide](docs/MAINTENANCE_GUIDE.md)** - Technical operational guide
 - **[Changelog](docs/CHANGELOG.md)** - Version history and updates
 
 ## 🎯 Perfect For
