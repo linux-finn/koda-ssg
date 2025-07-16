@@ -362,6 +362,6 @@ This Guide: Save and update as reference
 Your Koda setup is stable and battle-tested! This guide reflects real-world usage and fixes applied. Keep it updated as you discover new techniques or encounter new situations.
 
 Last Updated: July 6, 2025
-Site Version: Powered by Koda SSG v1.0.0
+Site Version: Powered by Koda SSG v1.1.0
 System: Arch Linux with verified fixes
 Status: Production-ready with all major bugs resolved

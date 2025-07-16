@@ -24,8 +24,7 @@ What actually happened instead.
 ## Environment
 - OS: [e.g. Ubuntu 22.04, macOS 13, Windows 11]
 - Python version: [e.g. 3.9.5]
-- Koda SSG version: [e.g. 1.0.0]
-
+- Koda SSG version: [e.g. 1.1.0]
 ## Content Files
 If relevant, please share:
 - Sample markdown files that cause the issue

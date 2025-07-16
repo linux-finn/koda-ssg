@@ -7,7 +7,7 @@ order: 3
 
 ## Koda Static Site Generator
 
-**Version:** v1.0.0 - Initial Release  
+**Version:** v1.1.0 - Documentation & Infrastructure Update
 **Status:** Released  
 **Language:** Python  
 **Type:** Open Source Tool
@@ -18,5 +18,4 @@ A minimal Python-based static site generator designed for clean, typography-focu
 
 **Links:** [GitHub Repository](#) - [Documentation](#)
 
-*This website is powered by Koda SSG v1.0.0!*
-
+*This website is powered by Koda SSG v1.1.0!*
