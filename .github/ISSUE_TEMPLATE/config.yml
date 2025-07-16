@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📖 Documentation
+    url: https://github.com/linux-finn/koda-ssg/blob/main/docs/MAINTENANCE_GUIDE.md
+    about: Check the comprehensive maintenance guide first
+  - name: 💬 Discussions
+    url: https://github.com/linux-finn/koda-ssg/discussions
+    about: Ask questions and discuss ideas with the community
