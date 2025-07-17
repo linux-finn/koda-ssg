@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ site_title }}{% endblock %}</title>
+    
+    <!-- Material Design Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Roboto Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/static/css/{{ theme_css }}">
+    <link rel="icon" type="image/png" href="/static/favicon.png">
+    
+    <!-- Theme color for mobile browsers -->
+    <meta name="theme-color" content="#1976d2">
+</head>
+<body class="material-theme">
+    <!-- App Bar -->
+    <header class="mdc-top-app-bar">
+        <div class="mdc-top-app-bar__row">
+            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                <span class="mdc-top-app-bar__title">
+                    <a href="/" class="site-title">{{ site_title }}</a>
+                </span>
+            </section>
+            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+                <!-- Theme toggle button -->
+                <button class="mdc-icon-button theme-toggle" id="theme-toggle">
+                    <span class="material-icons">brightness_6</span>
+                </button>
+            </section>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a class="nav-item" href="/blog.html">
+                <span class="material-icons">article</span>
+                <span>Blog</span>
+            </a>
+            <a class="nav-item" href="/photos.html">
+                <span class="material-icons">photo_library</span>
+                <span>Photos</span>
+            </a>
+            <a class="nav-item" href="/projects.html">
+                <span class="material-icons">code</span>
+                <span>Projects</span>
+            </a>
+            <a class="nav-item" href="/bits.html">
+                <span class="material-icons">tips_and_updates</span>
+                <span>Bits</span>
+            </a>
+            <a class="nav-item" href="/about.html">
+                <span class="material-icons">person</span>
+                <span>About</span>
+            </a>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>&copy; {{ current_year }} {{ site_title }}. Powered by Koda SSG.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple dark mode toggle
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-theme');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-theme'));
+        });
+        
+        // Load saved theme preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-theme');
+        }
+    </script>
+</body>
+</html>

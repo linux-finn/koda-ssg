@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Stephen Finnegan{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/style.css?v=2025070435">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml">
+</head>
+<body>
+    <div class="container">
+        <header class="site-header">
+    <nav class="site-nav">
+    <a href="/" class="home-link">Stephen Finnegan</a>
+    <div class="nav-links">
+        <a href="/blog.html">Blog</a>
+        <a href="/photos.html">Photos</a>
+        <a href="/bits.html">Bits</a>
+        <a href="/about.html">About</a>
+    </div>
+</nav>
+</header>
+
+        <main class="main-content">
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer class="site-footer">
+    <p>&copy; 2025 Stephen Finnegan. <a href="/rss.xml">RSS</a></p>
+    <a href="https://github.com/linux-finn/koda-ssg" class="koda-credit">⚡ This site is powered by Koda ⚡</a>
+</footer>
+    </div>
+</body>
+</html>

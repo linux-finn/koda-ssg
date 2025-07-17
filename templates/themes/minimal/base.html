@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ site_title }}{% endblock %}</title>
+    
+    <!-- Minimal typography fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/static/css/{{ theme_css }}">
+    <link rel="icon" type="image/png" href="/static/favicon.png">
+</head>
+<body class="minimal-theme">
+    <!-- Ultra-minimal header -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">
+                <a href="/">{{ site_title }}</a>
+            </h1>
+        </div>
+    </header>
+
+    <!-- Simple navigation -->
+    <nav class="site-nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="/blog.html">Writing</a></li>
+                <li><a href="/photos.html">Photos</a></li>
+                <li><a href="/projects.html">Work</a></li>
+                <li><a href="/bits.html">Notes</a></li>
+                <li><a href="/about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <main class="site-main">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <!-- Minimal footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>{{ current_year }} &mdash; {{ site_title }}</p>
+        </div>
+    </footer>
+</body>
+</html>

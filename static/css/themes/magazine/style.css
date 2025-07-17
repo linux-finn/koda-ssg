@@ -1,0 +1,460 @@
+/* Magazine Theme for Koda SSG - Editorial layout with featured content */
+
+:root {
+    /* Colors */
+    --mag-primary: #1a1a1a;
+    --mag-secondary: #666666;
+    --mag-accent: #d4292f;
+    --mag-accent-light: #e85a5f;
+    --mag-background: #ffffff;
+    --mag-background-light: #f8f8f8;
+    --mag-background-dark: #f0f0f0;
+    --mag-border: #e0e0e0;
+    --mag-border-light: #f0f0f0;
+    --mag-text-light: #888888;
+    
+    /* Typography */
+    --font-serif: 'Playfair Display', 'Georgia', serif;
+    --font-sans: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+    
+    /* Spacing */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+    --space-xxl: 4rem;
+    
+    /* Layout */
+    --container-width: 75rem;
+    --content-width: 45rem;
+}
+
+/* Reset and Base */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--mag-primary);
+    background-color: var(--mag-background);
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+}
+
+/* Header */
+.site-header {
+    border-bottom: 1px solid var(--mag-border);
+}
+
+.header-top {
+    background-color: var(--mag-background-light);
+    padding: var(--space-xs) 0;
+    font-size: 0.85rem;
+    border-bottom: 1px solid var(--mag-border-light);
+}
+
+.header-top .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-meta {
+    color: var(--mag-secondary);
+}
+
+.divider {
+    margin: 0 var(--space-xs);
+}
+
+.social-link {
+    color: var(--mag-secondary);
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.header-main {
+    padding: var(--space-xl) 0 var(--space-lg) 0;
+    text-align: center;
+}
+
+.site-title {
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -1px;
+}
+
+.site-title a {
+    color: var(--mag-primary);
+    text-decoration: none;
+}
+
+.site-subtitle {
+    font-size: 1.1rem;
+    color: var(--mag-secondary);
+    margin: var(--space-sm) 0 0 0;
+    font-weight: 300;
+    font-style: italic;
+}
+
+.site-nav {
+    background-color: var(--mag-primary);
+    color: white;
+}
+
+.nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-link {
+    display: block;
+    padding: var(--space-md) var(--space-lg);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: var(--mag-accent);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    color: var(--mag-primary);
+    line-height: 1.2;
+    margin: 0 0 var(--space-md) 0;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+p {
+    margin: 0 0 var(--space-md) 0;
+}
+
+/* Links */
+a {
+    color: var(--mag-accent);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--mag-accent-light);
+    text-decoration: underline;
+}
+
+/* Main Content */
+.site-main {
+    min-height: 60vh;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, var(--mag-primary) 0%, #333333 100%);
+    color: white;
+    padding: var(--space-xxl) 0;
+    margin-bottom: var(--space-xl);
+}
+
+.hero-content {
+    text-align: center;
+    max-width: var(--content-width);
+    margin: 0 auto;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: var(--space-md);
+    color: white;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+/* Featured Grid */
+.featured-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-xl);
+    margin: var(--space-xl) 0;
+}
+
+.featured-main {
+    background: white;
+}
+
+.featured-sidebar {
+    background: var(--mag-background-light);
+    padding: var(--space-lg);
+}
+
+/* Article Cards */
+.article-card {
+    background: white;
+    border: 1px solid var(--mag-border);
+    margin-bottom: var(--space-lg);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.article-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.article-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.article-content {
+    padding: var(--space-lg);
+}
+
+.article-category {
+    color: var(--mag-accent);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: var(--space-xs);
+}
+
+.article-title {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-sm);
+}
+
+.article-title a {
+    color: var(--mag-primary);
+    text-decoration: none;
+}
+
+.article-title a:hover {
+    color: var(--mag-accent);
+}
+
+.article-meta {
+    color: var(--mag-text-light);
+    font-size: 0.9rem;
+    margin-bottom: var(--space-md);
+}
+
+.article-excerpt {
+    color: var(--mag-secondary);
+    line-height: 1.6;
+}
+
+/* Magazine Sections */
+.magazine-section {
+    margin: var(--space-xxl) 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-md);
+    border-bottom: 2px solid var(--mag-accent);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-sm);
+}
+
+.section-subtitle {
+    color: var(--mag-secondary);
+    font-size: 1.1rem;
+    font-style: italic;
+}
+
+/* Grid Layouts */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+    margin: var(--space-lg) 0;
+}
+
+.two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    margin: var(--space-lg) 0;
+}
+
+/* Photo Gallery */
+/* Photos - Match default theme exactly */
+.photo-magazine {
+    display: block;
+}
+
+.photo-item {
+    margin-bottom: 3rem;
+}
+
+.photo-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--mag-border);
+}
+
+.photo-caption {
+    padding: 0;
+}
+
+.photo-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--mag-primary);
+}
+
+.photo-date {
+    color: var(--mag-text-light);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .site-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.75rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .featured-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+    
+    .two-column {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+    
+    .nav-menu {
+        flex-direction: column;
+    }
+    
+    .nav-link {
+        padding: var(--space-sm) var(--space-md);
+        text-align: center;
+    }
+    
+    .container {
+        padding: 0 var(--space-sm);
+    }
+    
+    .header-main {
+        padding: var(--space-lg) 0;
+    }
+    
+    .hero-section {
+        padding: var(--space-xl) 0;
+    }
+    
+    .magazine-section {
+        margin: var(--space-xl) 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-title {
+        font-size: 2rem;
+    }
+    
+    .hero-title {
+        font-size: 1.75rem;
+    }
+    
+    .section-title {
+        font-size: 1.75rem;
+    }
+    
+    h1 {
+        font-size: 1.75rem;
+    }
+    
+    .header-top .container {
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+    
+    .nav-link {
+        padding: var(--space-xs) var(--space-sm);
+        font-size: 0.85rem;
+    }
+    
+    .container {
+        padding: 0 var(--space-xs);
+    }
+}

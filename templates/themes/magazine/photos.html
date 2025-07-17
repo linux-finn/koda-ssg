@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Gallery — {{ site_title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="magazine-section">
+        <div class="section-header">
+            <h1 class="section-title">Photos</h1>
+            <p class="section-subtitle" style="font-style: italic;">My version of Instagram</p>
+        </div>
+        
+        <!-- Constrain photos to readable width like default theme -->
+        <div style="max-width: 700px; margin: 2rem auto 0 auto;">
+            <div class="photo-magazine">
+                {% for photo in photos %}
+                <div class="photo-item">
+                    {% if photo.image %}
+                    <img src="{{ photo.image }}" alt="{{ photo.title or 'Gallery Photo' }}" loading="lazy">
+                    {% endif %}
+                    <div class="photo-caption">
+                        {% if photo.title %}
+                        <div class="photo-title">{{ photo.title }}</div>
+                        {% endif %}
+                        <div class="photo-date">{{ photo.date.strftime('%B %d, %Y') }}</div>
+                        {% if photo.content %}
+                        <div style="color: var(--mag-secondary); font-size: 0.9rem; line-height: 1.5;">
+                            {{ photo.content|safe }}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        {% if not photos %}
+        <div style="text-align: center; padding: 3rem; background: var(--mag-background-light); border-radius: 0.5rem;">
+            <h3 style="color: var(--mag-secondary); margin-bottom: 1rem;">Gallery Coming Soon</h3>
+            <p style="color: var(--mag-text-light);">Photo stories and visual content will be published here. Check back for updates.</p>
+        </div>
+        {% endif %}
+        
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="/" style="background: var(--mag-primary); color: white; padding: 0.75rem 2rem; text-decoration: none; font-weight: 600;">← Back to Home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

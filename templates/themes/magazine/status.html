@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Updates — {{ site_title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="magazine-section">
+        <div class="section-header">
+            <h1 class="section-title">Status Updates</h1>
+            <p class="section-subtitle">Quick thoughts, observations, and behind-the-scenes updates</p>
+        </div>
+        
+        <div style="max-width: 40rem; margin: 0 auto;">
+            {% for status in status_posts %}
+            <div style="background: white; border: 1px solid var(--mag-border); padding: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid var(--mag-accent);">
+                <div style="color: var(--mag-text-light); font-size: 0.9rem; margin-bottom: 1rem;">
+                    {{ status.date.strftime('%B %d, %Y at %I:%M %p') }}
+                </div>
+                <div style="font-size: 1rem; line-height: 1.6;">
+                    {{ status.content|safe }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        {% if not status_posts %}
+        <div style="text-align: center; padding: 3rem; background: var(--mag-background-light); border-radius: 0.5rem;">
+            <h3 style="color: var(--mag-secondary); margin-bottom: 1rem;">No Updates Yet</h3>
+            <p style="color: var(--mag-text-light);">Status updates and quick thoughts will appear here. Stay tuned for regular updates.</p>
+        </div>
+        {% endif %}
+        
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="/" style="background: var(--mag-primary); color: white; padding: 0.75rem 2rem; text-decoration: none; font-weight: 600;">← Back to Home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

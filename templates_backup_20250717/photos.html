@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Photos - Your Name{% endblock %}
+
+{% block content %}
+<h1>Photos</h1>
+<p style="font-style: italic; margin-bottom: 2rem;">My version of Instagram</p>
+
+<div class="photo-grid">
+    {% for photo in photos %}
+    <div class="photo-item">
+        {% if photo.image %}
+        <img src="{{ photo.image }}" alt="{{ photo.title }}" loading="lazy">
+        {% endif %}
+        {% if photo.title %}
+        <h3>{{ photo.title }}</h3>
+        {% endif %}
+        <time class="photo-date">{{ photo.date.strftime('%B %d, %Y') }}</time>
+        {% if photo.content %}
+        <div class="photo-content">{{ photo.content|safe }}</div>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

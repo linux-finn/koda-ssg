@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Ephemera - {{ site_title }}{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="page-header">
+    <h1><i class="bi bi-bookmark"></i> Ephemera</h1>
+    <p>Interesting links and discoveries from around the web</p>
+</div>
+
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        {% for item in ephemera_items %}
+        <div class="ephemera-item">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <small class="text-muted">
+                    <i class="bi bi-link-45deg"></i> {{ item.date.strftime('%B %d, %Y') }}
+                </small>
+            </div>
+            <div class="ephemera-content">
+                {{ item.content|safe }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% if not ephemera_items %}
+<div class="alert alert-info text-center" role="alert">
+    <i class="bi bi-bookmark"></i> No ephemera found. Add interesting links in <code>content/ephemera/</code>
+</div>
+{% endif %}
+
+<div class="text-center mt-4">
+    <a href="/" class="btn btn-outline-primary">
+        <i class="bi bi-house"></i> Back to Home
+    </a>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Photos — {{ site_title }}{% endblock %}
+
+{% block content %}
+<h1>Photos</h1>
+
+<p style="color: var(--color-text-light); margin-bottom: 3rem; font-style: italic;">
+    My version of Instagram
+</p>
+
+<!-- Constrain photos to readable width like default theme -->
+<div style="max-width: 700px; margin: 0 auto;">
+    <div class="photo-grid">
+        {% for photo in photos %}
+        <div class="photo-item">
+            {% if photo.image %}
+            <img src="{{ photo.image }}" alt="{{ photo.title or 'Photo' }}" loading="lazy">
+            {% endif %}
+            
+            {% if photo.title %}
+            <div class="photo-title">{{ photo.title }}</div>
+            {% endif %}
+            
+            <div class="photo-date">{{ photo.date.strftime('%B %d, %Y') }}</div>
+            
+            {% if photo.content %}
+            <div style="color: var(--color-text-light); font-size: 0.9rem;">
+                {{ photo.content|safe }}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% if not photos %}
+<p style="color: var(--color-text-light); font-style: italic;">
+    No photos shared yet. The gallery will grow over time.
+</p>
+{% endif %}
+
+<footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border-light);">
+    <p style="color: var(--color-text-light); font-size: 0.9rem;">
+        <a href="/">← Home</a>
+    </p>
+</footer>
+{% endblock %}

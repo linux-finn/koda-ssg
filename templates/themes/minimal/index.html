@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Simple introduction -->
+<div style="margin-bottom: 4rem;">
+    <h1>Hello.</h1>
+    <p>I'm Stephen Finnegan. I write about technology, share photos, and build things. This is my corner of the internet.</p>
+</div>
+
+<!-- Recent writing -->
+{% if recent_posts %}
+<section style="margin-bottom: 4rem;">
+    <h2>Recent Writing</h2>
+    <ul class="post-list">
+        {% for post in recent_posts[:4] %}
+        <li class="post-item">
+            <h3 class="post-title">
+                <a href="{{ post.url }}">{{ post.title }}</a>
+            </h3>
+            <div class="post-meta">
+                {{ post.date.strftime('%B %d, %Y') }}
+                {% if post.tags %}
+                —
+                {% for tag in post.tags %}
+                <span style="color: var(--color-text-lighter);">{{ tag }}</span>{% if not loop.last %}, {% endif %}
+                {% endfor %}
+                {% endif %}
+            </div>
+            {% if post.excerpt %}
+            <div class="post-excerpt">{{ post.excerpt }}</div>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    <p><a href="/blog.html">All writing →</a></p>
+</section>
+{% endif %}
+
+<!-- Recent links -->
+{% if recent_ephemera %}
+<section style="margin-bottom: 4rem;">
+    <h2>Recently Shared</h2>
+    <ul class="ephemera-list">
+        {% for item in recent_ephemera[:3] %}
+        <li class="ephemera-item">
+            <div class="ephemera-date">{{ item.date.strftime('%B %d') }}</div>
+            <div class="ephemera-content">{{ item.content|safe }}</div>
+        </li>
+        {% endfor %}
+    </ul>
+    <p><a href="/ephemera.html">All links →</a></p>
+</section>
+{% endif %}
+
+<!-- Simple footer links -->
+<section>
+    <p style="color: var(--color-text-light); font-size: 0.9rem;">
+        You can also find me sharing 
+        <a href="/photos.html">photos</a>, 
+        <a href="/status.html">quick thoughts</a>, 
+        and details <a href="/about.html">about my work</a>.
+    </p>
+</section>
+{% endblock %}

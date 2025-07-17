@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Status Updates - {{ site_title }}{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="page-header">
+    <h1><i class="bi bi-chat-dots"></i> Status Updates</h1>
+    <p>Quick thoughts and micro-posts</p>
+</div>
+
+<div class="status-timeline">
+    {% for status in status_posts %}
+    <div class="status-item">
+        <div class="status-meta">
+            <i class="bi bi-clock"></i> {{ status.date.strftime('%B %d, %Y at %I:%M %p') }}
+        </div>
+        <div class="status-content">
+            {{ status.content|safe }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% if not status_posts %}
+<div class="alert alert-info text-center" role="alert">
+    <i class="bi bi-chat"></i> No status updates found. Add updates in <code>content/status/</code>
+</div>
+{% endif %}
+
+<div class="text-center mt-4">
+    <a href="/" class="btn btn-outline-primary">
+        <i class="bi bi-house"></i> Back to Home
+    </a>
+</div>
+{% endblock %}

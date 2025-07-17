@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Links — {{ site_title }}{% endblock %}
+
+{% block content %}
+<h1>Links</h1>
+
+<p style="color: var(--color-text-light); margin-bottom: 3rem;">
+    Interesting things I've found around the web, worth sharing and remembering.
+</p>
+
+<ul class="ephemera-list">
+    {% for item in ephemera_items %}
+    <li class="ephemera-item">
+        <div class="ephemera-date">{{ item.date.strftime('%B %d, %Y') }}</div>
+        <div class="ephemera-content">{{ item.content|safe }}</div>
+    </li>
+    {% endfor %}
+</ul>
+
+{% if not ephemera_items %}
+<p style="color: var(--color-text-light); font-style: italic;">
+    No links shared yet. This will be a collection of interesting discoveries.
+</p>
+{% endif %}
+
+<footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border-light);">
+    <p style="color: var(--color-text-light); font-size: 0.9rem;">
+        <a href="/">← Home</a>
+    </p>
+</footer>
+{% endblock %}

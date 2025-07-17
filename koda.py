@@ -15,6 +15,37 @@ import argparse
 from xml.etree.ElementTree import Element, SubElement, tostring
 from xml.dom import minidom
 
+# Theme Configuration
+CURRENT_THEME = 'magazine'  # Options: 'default', 'material', 'bootstrap', 'readthedocs', 'minimal', 'magazine'
+
+# Theme settings
+THEMES = {
+    'default': {
+        'template_dir': 'templates',
+        'css_file': 'style.css'
+    },
+    'material': {
+        'template_dir': 'templates/themes/material',
+        'css_file': 'themes/material/style.css'
+    },
+    'bootstrap': {
+        'template_dir': 'templates/themes/bootstrap', 
+        'css_file': 'themes/bootstrap/style.css'
+    },
+    'readthedocs': {
+        'template_dir': 'templates/themes/readthedocs',
+        'css_file': 'themes/readthedocs/style.css'
+    },
+    'minimal': {
+        'template_dir': 'templates/themes/minimal',
+        'css_file': 'themes/minimal/style.css'
+    },
+    'magazine': {
+        'template_dir': 'templates/themes/magazine',
+        'css_file': 'themes/magazine/style.css'
+    }
+}
+
 class KodaGenerator:
     def __init__(self, source_dir="content", output_dir="site", templates_dir="templates"):
         self.source_dir = Path(source_dir)
@@ -26,8 +57,18 @@ class KodaGenerator:
         self.status_posts = []
         self.ephemera_posts = []
         
+        # Theme support
+        self.current_theme_config = THEMES[CURRENT_THEME]
+        template_dir = self.current_theme_config['template_dir']
+        
+        # Fallback to default templates if theme templates don't exist
+        if not os.path.exists(template_dir):
+            print(f"Theme directory {template_dir} not found, falling back to default templates")
+            template_dir = 'templates'
+            self.current_theme_config = THEMES['default']
+        
         # Setup Jinja2
-        self.env = Environment(loader=FileSystemLoader(self.templates_dir))
+        self.env = Environment(loader=FileSystemLoader(template_dir))
         
         # Setup Markdown
         self.md = markdown.Markdown(extensions=['meta', 'codehilite', 'fenced_code'])
@@ -73,6 +114,16 @@ class KodaGenerator:
             'raw_content': markdown_content
         }
     
+    def get_template_context(self):
+        """Get common template context variables"""
+        return {
+            'theme_css': self.current_theme_config['css_file'],
+            'current_theme': CURRENT_THEME,
+            'site_title': "Stephen Finnegan",
+            'current_year': datetime.now().year,
+            'site_url': "https://stephenfinnegan.com"
+        }
+    
     def load_content(self):
         """Load all content files"""
         print("Loading content...")
@@ -89,7 +140,8 @@ class KodaGenerator:
                     'date': parsed['frontmatter'].get('date', datetime.now().date()),
                     'content': parsed['content'],
                     'excerpt': parsed['frontmatter'].get('excerpt', ''),
-                    'tags': parsed['frontmatter'].get('tags', [])
+                    'tags': parsed['frontmatter'].get('tags', []),
+                    'url': f"/posts/{post_file.stem}.html"
                 }
                 self.posts.append(post_data)
         
@@ -147,7 +199,7 @@ class KodaGenerator:
                 photo_data = {
                     'slug': photo_file.stem,
                     'title': parsed['frontmatter'].get('title', ''),
-                    'date': parsed['frontmatter'].get('date', datetime.now()),
+                    'date': parsed['frontmatter'].get('date', datetime.now().date()),
                     'image': parsed['frontmatter'].get('image', ''),
                     'content': parsed['content']
                 }
@@ -183,19 +235,26 @@ class KodaGenerator:
         """Generate all pages"""
         print("Generating pages...")
         
+        # Get common template context
+        context = self.get_template_context()
+        
         # Homepage
         template = self.env.get_template('index.html')
         with open(self.output_dir / 'index.html', 'w', encoding='utf-8') as f:
-            f.write(template.render(
-                recent_posts=self.posts[:5],
-                recent_ephemera=self.ephemera_posts[:3],
-                pages=sorted(self.pages, key=lambda x: x['order'])
-            ))
+            page_context = context.copy()
+            page_context.update({
+                'recent_posts': self.posts[:5],
+                'recent_ephemera': self.ephemera_posts[:3],
+                'pages': sorted(self.pages, key=lambda x: x['order'])
+            })
+            f.write(template.render(**page_context))
         
         # Blog index
         template = self.env.get_template('blog.html')
         with open(self.output_dir / 'blog.html', 'w', encoding='utf-8') as f:
-            f.write(template.render(posts=self.posts))
+            page_context = context.copy()
+            page_context.update({'posts': self.posts})
+            f.write(template.render(**page_context))
         
         # Individual blog posts
         posts_dir = self.output_dir / "posts"
@@ -204,32 +263,42 @@ class KodaGenerator:
         
         for post in self.posts:
             with open(posts_dir / f"{post['slug']}.html", 'w', encoding='utf-8') as f:
-                f.write(template.render(post=post))
+                page_context = context.copy()
+                page_context.update({'post': post})
+                f.write(template.render(**page_context))
         
         # Static pages
         template = self.env.get_template('page.html')
         for page in self.pages:
             with open(self.output_dir / f"{page['slug']}.html", 'w', encoding='utf-8') as f:
-                f.write(template.render(page=page))
+                page_context = context.copy()
+                page_context.update({'page': page})
+                f.write(template.render(**page_context))
         
         # Photos page
         if self.photos:
             template = self.env.get_template('photos.html')
             with open(self.output_dir / 'photos.html', 'w', encoding='utf-8') as f:
-                f.write(template.render(photos=self.photos))
+                page_context = context.copy()
+                page_context.update({'photos': self.photos})
+                f.write(template.render(**page_context))
         
         # Status page
         if self.status_posts:
             template = self.env.get_template('status.html')
             with open(self.output_dir / 'status.html', 'w', encoding='utf-8') as f:
-                f.write(template.render(status_posts=self.status_posts))
+                page_context = context.copy()
+                page_context.update({'status_posts': self.status_posts})
+                f.write(template.render(**page_context))
         
         # Ephemera page
         if self.ephemera_posts:
             template = self.env.get_template('ephemera.html')
             with open(self.output_dir / 'ephemera.html', 'w', encoding='utf-8') as f:
-                f.write(template.render(ephemera_items=self.ephemera_posts))
-    
+                page_context = context.copy()
+                page_context.update({'ephemera_items': self.ephemera_posts})
+                f.write(template.render(**page_context))
+
     def build(self):
         """Build the entire site"""
         print("Building Koda site...")

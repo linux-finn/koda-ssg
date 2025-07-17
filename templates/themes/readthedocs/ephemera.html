@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>🔗 Ephemera</h1>
+
+{% for item in ephemera_items %}
+<div class="doc-section">
+    <div class="post-meta">
+        <span>🔗 {{ item.date.strftime('%B %d, %Y') }}</span>
+    </div>
+    <div>{{ item.content|safe }}</div>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>💭 Status Updates</h1>
+
+{% for status in status_posts %}
+<div class="doc-section">
+    <div class="post-meta">
+        <span>🕐 {{ status.date.strftime('%B %d, %Y at %I:%M %p') }}</span>
+    </div>
+    <div>{{ status.content|safe }}</div>
+</div>
+{% endfor %}
+{% endblock %}

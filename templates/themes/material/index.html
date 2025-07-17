@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero-section material-card">
+    <h1>Welcome to {{ site_title }}</h1>
+    <p>A minimal, typography-focused website built with Koda SSG and Material Design.</p>
+</div>
+
+<div class="recent-posts">
+    <h2>Recent Posts</h2>
+    {% for post in recent_posts[:3] %}
+    <article class="material-card">
+        <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+        <div class="post-meta">
+            <span class="material-icons">schedule</span>
+            <time>{{ post.date.strftime('%B %d, %Y') }}</time>
+        </div>
+        {% if post.excerpt %}
+        <p>{{ post.excerpt }}</p>
+        {% endif %}
+        <a href="{{ post.url }}" class="mdc-button">Read More</a>
+    </article>
+    {% endfor %}
+</div>
+
+<style>
+.hero-section {
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-variant));
+    color: var(--on-primary);
+    margin-bottom: 32px;
+}
+
+.post-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 0.875rem;
+    margin-bottom: 16px;
+}
+
+.dark-theme .post-meta {
+    color: rgba(255, 255, 255, 0.6);
+}
+</style>
+{% endblock %}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ site_title }}{% endblock %}</title>
+    
+    <!-- ReadTheDocs-style fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/static/css/{{ theme_css }}">
+    <link rel="icon" type="image/png" href="/static/favicon.png">
+</head>
+<body class="readthedocs-theme">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="/">{{ site_title }}</a>
+            </div>
+            <div class="nav-search">
+                <input type="search" placeholder="Search..." class="search-input">
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Layout -->
+    <div class="main-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <div class="sidebar-section">
+                    <h3>Navigation</h3>
+                    <ul class="nav-menu">
+                        <li><a href="/"><span class="nav-icon">🏠</span> Home</a></li>
+                        <li><a href="/blog.html"><span class="nav-icon">📝</span> Blog</a></li>
+                        <li><a href="/photos.html"><span class="nav-icon">📸</span> Photos</a></li>
+                        <li><a href="/projects.html"><span class="nav-icon">🔧</span> Projects</a></li>
+                        <li><a href="/bits.html"><span class="nav-icon">💡</span> Bits</a></li>
+                        <li><a href="/about.html"><span class="nav-icon">👤</span> About</a></li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>Quick Links</h3>
+                    <ul class="nav-menu">
+                        <li><a href="/status.html"><span class="nav-icon">💭</span> Status</a></li>
+                        <li><a href="/ephemera.html"><span class="nav-icon">🔗</span> Links</a></li>
+                        <li><a href="/rss.xml"><span class="nav-icon">📡</span> RSS</a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Content Area -->
+        <main class="content">
+            <div class="content-wrapper">
+                {% block breadcrumbs %}{% endblock %}
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; {{ current_year }} {{ site_title }}. Built with Koda SSG.</p>
+        </div>
+    </footer>
+</body>
+</html>

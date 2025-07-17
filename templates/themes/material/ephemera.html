@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header material-card">
+    <h1>Ephemera</h1>
+    <p>Interesting links and discoveries from around the web.</p>
+</div>
+
+<div class="ephemera-list">
+    {% for item in ephemera_items %}
+    <div class="material-card ephemera-item">
+        <div class="ephemera-meta">
+            <span class="material-icons">link</span>
+            <time>{{ item.date.strftime('%B %d, %Y') }}</time>
+        </div>
+        <div class="ephemera-content">
+            {{ item.content|safe }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<style>
+.ephemera-list {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.ephemera-item {
+    margin-bottom: 20px;
+}
+
+.ephemera-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 0.875rem;
+    margin-bottom: 12px;
+}
+
+.dark-theme .ephemera-meta {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.ephemera-content p:last-child {
+    margin-bottom: 0;
+}
+
+.ephemera-content strong {
+    color: var(--primary-color);
+}
+</style>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header material-card">
+    <h1>Photos</h1>
+    <p style="font-style: italic; margin-bottom: 2rem;">My version of Instagram</p>
+</div>
+
+<div class="photos-grid">
+    {% for photo in photos %}
+    <div class="photo-item">
+        {% if photo.image %}
+        <img src="{{ photo.image }}" alt="{{ photo.title }}" loading="lazy">
+        {% endif %}
+        {% if photo.title %}
+        <h3>{{ photo.title }}</h3>
+        {% endif %}
+        <time class="photo-date">{{ photo.date.strftime('%B %d, %Y') }}</time>
+        {% if photo.content %}
+        <div class="photo-content">{{ photo.content|safe }}</div>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+
+<style>
+/* Photos - Match default theme exactly */
+.photos-grid {
+    display: block;
+}
+
+.photo-item {
+    margin-bottom: 3rem;
+}
+
+.photo-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.photo-item h3 {
+    margin-bottom: 0.5rem;
+    color: var(--on-surface);
+}
+
+.photo-date {
+    font-size: 0.9rem;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.dark-theme .photo-date {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.photo-content {
+    color: var(--on-surface);
+}
+</style>
+{% endblock %}
