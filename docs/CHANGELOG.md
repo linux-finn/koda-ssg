@@ -6,7 +6,7 @@ All notable changes to Koda SSG will be documented in this file.
 
 All notable changes to Koda SSG will be documented in this file.
 
-## [2.0.0] - 2025-07-17
+## [1.2.0] - 2025-07-17
 
 ### 🎨 Major Theme System Release
 
