@@ -1,22 +1,54 @@
-# Koda SSG 🚀
+```markdown
+# Koda SSG 🎨
 
-> A minimal Python-based static site generator for clean, typography-focused websites.
+> A powerful Python static site generator with beautiful themes and mobile-first design
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
+[![Themes](https://img.shields.io/badge/themes-6-brightgreen.svg)](#-themes)
 
-Koda SSG is designed for writers and developers who want beautiful, fast-loading websites without the complexity of modern web frameworks. Built for the modern web with classic sensibilities.
+Koda SSG transforms your content into beautiful websites with **6 professional themes**. Built for writers, developers, and creators who want stunning sites without complexity.
+
+## 🎨 Themes
+
+Choose from 6 carefully crafted themes, each with unique aesthetics:
+
+| Theme | Style | Best For |
+|-------|-------|----------|
+| **🎯 Material** | Modern cards, dark/light mode | Tech blogs, portfolios |
+| **💼 Bootstrap** | Professional, corporate | Business sites, documentation |
+| **📚 ReadTheDocs** | Clean documentation layout | Technical docs, guides |
+| **✨ Minimal** | Ultra-clean typography | Writers, minimalists |
+| **📰 Magazine** | Editorial layout | Publications, media sites |
+| **📝 Default** | Original minimal design | Personal blogs |
+
+### 🔄 Easy Theme Switching
+
+```bash
+# Switch themes instantly
+./switch-theme.sh material     # Modern Material Design
+./switch-theme.sh bootstrap    # Professional corporate
+./switch-theme.sh readthedocs  # Documentation style
+./switch-theme.sh minimal      # Ultra-clean typography
+./switch-theme.sh magazine     # Editorial magazine
+./switch-theme.sh default      # Original minimal
+
+# Build with new theme
+python koda.py
+```
 
 ## ✨ Features
 
-- **Ultra-minimal design** with abundant white space and clean typography
-- **Lightning fast** - No JavaScript bloat, minimal CSS
-- **Multiple content types** - Blog posts, photos, status updates, ephemera
-- **Markdown-powered** with YAML frontmatter
-- **RSS feeds** automatically generated
-- **Mobile-responsive** design that works everywhere
-- **Git-friendly** workflow with file-based content
-- **Deploy anywhere** - Works with any static hosting service
+- **🎨 6 Professional Themes** - Material, Bootstrap, ReadTheDocs, Minimal, Magazine, Default
+- **📱 Mobile-First Design** - All themes optimized for mobile and desktop
+- **⚡ Lightning Fast** - Minimal CSS, no JavaScript bloat
+- **📝 Multiple Content Types** - Blog posts, photos, status updates, ephemera
+- **🔧 Easy Theme Switching** - Change your site's look in seconds
+- **📸 Perfect Photo Display** - Natural aspect ratios across all themes
+- **🚀 Markdown-Powered** - Write in Markdown with YAML frontmatter
+- **📡 RSS Feeds** - Automatically generated
+- **🌐 Deploy Anywhere** - Works with any static hosting service
+- **🔀 Git-Friendly** - File-based workflow
 
 ## 🚀 Quick Start
 
@@ -28,90 +60,166 @@ python3 -m venv koda-env
 source koda-env/bin/activate
 pip install -r requirements.txt
 
-# Create your first post
-nano content/posts/hello-world.md
-
-# Build and preview
+# Try different themes
+./switch-theme.sh material
 python3 koda.py
+
+# Preview your site
 cd site && python3 -m http.server 8000
 ```
 
 Visit `http://localhost:8000` to see your site!
 
-## 📚 Documentation
+## 📱 Mobile Responsive
 
-- **[User Guide](docs/USER_GUIDE.md)** - Complete guide for using Koda SSG
-- **[Maintenance Guide](docs/MAINTENANCE_GUIDE.md)** - Technical operational guide
-- **[Changelog](docs/CHANGELOG.md)** - Version history and updates
+All themes are optimized for:
+- **📱 Mobile phones** - Touch-friendly navigation
+- **💻 Desktop** - Full-featured layouts
+- **📊 Tablets** - Adaptive grid systems
+- **🖼️ Photos** - Natural aspect ratios on all devices
 
-## 🎯 Perfect For
+## 🛠 Content Types
 
-- Personal blogs and portfolios
-- Photography sites
-- Minimal business websites
-- Technical documentation
-- Anyone who values speed and simplicity
+| Type | Purpose | Location | Date Format |
+|------|---------|----------|-------------|
+| **Blog** | Long-form articles | `content/posts/` | `2025-07-17` |
+| **Photos** | Image galleries | `content/photos/` | `2025-07-17` |
+| **Status** | Micro-posts | `content/status/` | `2025-07-17T15:30:00` |
+| **Pages** | Static content | `content/pages/` | `2025-07-17` |
+| **Ephemera** | Link sharing | `content/ephemera/` | `2025-07-17T15:30:00` |
 
-## 🛠️ Built With
+## 🎯 Theme Showcase
 
-- **Python 3.7+** - Core language
-- **Jinja2** - Templating engine
-- **Markdown** - Content formatting
-- **PyYAML** - Frontmatter parsing
+### 🎯 Material Design
+Modern card-based design with:
+- Material Design principles
+- Dark/light mode toggle
+- Smooth animations
+- Material icons
 
-## 📦 Content Types
+### 💼 Bootstrap
+Professional corporate styling with:
+- Bootstrap 5 components
+- Responsive grid system
+- Business-friendly aesthetics
+- Professional navigation
 
-| Type | Purpose | Example |
-|------|---------|---------|
-| **Blog** | Long-form articles | `/content/posts/my-thoughts.md` |
-| **Photos** | Image galleries | `/content/photos/sunset.md` |
-| **Status** | Micro-posts | `/content/status/quick-update.md` |
-| **Pages** | Static content | `/content/pages/about.md` |
-| **Ephemera** | Link sharing | `/content/ephemera/interesting-link.md` |
+### 📚 ReadTheDocs
+Clean documentation layout with:
+- Fixed sidebar navigation
+- Professional typography
+- Search-friendly structure
+- Breadcrumb navigation
+
+### ✨ Minimal
+Ultra-clean typography focus with:
+- Maximum whitespace
+- Elegant simplicity
+- Typography-first design
+- Distraction-free reading
+
+### 📰 Magazine
+Editorial layout with:
+- Hero sections
+- Featured content areas
+- Magazine-style typography
+- Editorial color schemes
+
+### 📝 Default
+Original minimal design with:
+- Clean typography
+- Simple navigation
+- Fast loading
+- Classic aesthetics
 
 ## 🚀 Deployment
 
-Koda generates static HTML that works anywhere:
+Koda generates static HTML that works everywhere:
 
-- **GitHub Pages** - Free hosting with automatic builds
-- **Netlify** - Drag-and-drop deployment
-- **Vercel** - Git-based deployment
-- **Any static host** - Upload the `site/` folder
+```bash
+# Build your site
+python koda.py
+
+# Deploy to any static host:
+# - GitHub Pages
+# - Netlify  
+# - Vercel
+# - AWS S3
+# - Any web server
+```
 
 ## 🔧 Daily Workflow
 
 ```bash
 # Start your session
-cd /DATA/AppData/koda-ssg
+cd /path/to/koda-ssg
 source koda-env/bin/activate
+
+# Switch theme (optional)
+./switch-theme.sh magazine
 
 # Create content
 nano content/posts/new-post.md
 
-# Build and deploy
+# Build and preview
 python koda.py
-./deploy.sh
+cd site && python -m http.server 8000
 
-# Commit to Git
-git add .
-git commit -m "Add new content"
-git push origin main
+# Deploy (if using deploy script)
+./deploy.sh
 ```
+
+## 📚 Documentation
+
+- **[User Guide](docs/USER_GUIDE.md)** - Complete usage guide
+- **[Maintenance Guide](docs/MAINTENANCE_GUIDE.md)** - Technical operations
+- **[Theme Development](docs/THEMES.md)** - Creating custom themes
+- **[Changelog](docs/CHANGELOG.md)** - Version history
+
+## 🛠 Built With
+
+- **Python 3.7+** - Core language
+- **Jinja2** - Templating engine  
+- **Markdown** - Content formatting
+- **PyYAML** - Frontmatter parsing
+
+## 🌟 Perfect For
+
+- **👥 Personal blogs** - Share your thoughts with style
+- **📸 Photography sites** - Showcase your work beautifully
+- **💼 Business websites** - Professional online presence
+- **📖 Documentation** - Technical guides and manuals
+- **📰 Publications** - Magazine-style content sites
+- **🎨 Portfolios** - Creative showcase sites
 
 ## 🤝 Contributing
 
-Contributions welcome! Please read our [contributing guidelines](CONTRIBUTING.md) first.
+Contributions welcome! Areas where we'd love help:
+
+- **🎨 New themes** - Create additional design options
+- **🔧 Features** - Enhance core functionality  
+- **📱 Mobile improvements** - Better responsive design
+- **📚 Documentation** - Improve guides and examples
+- **🐛 Bug fixes** - Help make Koda more reliable
+
+Please read our [contributing guidelines](CONTRIBUTING.md) first.
 
 ## 📄 License
 
 MIT License - see [LICENSE](LICENSE) for details.
 
-## 🙏 Acknowledgments
+## 🏆 Why Choose Koda SSG?
 
-- Inspired by minimal design principles
-- Built for the modern web with classic sensibilities
+- **🎨 Beautiful themes out of the box** - No design skills required
+- **📱 Mobile-first approach** - Your site looks great everywhere
+- **⚡ Blazing fast performance** - Minimal overhead, maximum speed
+- **🔧 Simple yet powerful** - Easy to use, flexible to customize
+- **🚀 Deploy anywhere** - No vendor lock-in
+- **📝 Content-focused** - Built for writers and creators
 
 ---
 
 **[Stephen Finnegan](https://stephenfinnegan.com)** - Creator and maintainer
+
+*Built with ❤️ for the modern web*
 ```
